@@ -1,5 +1,4 @@
 -- 1. List the following details of each employee: employee number, last name, first name, sex, and salary.
-
 SELECT employees.emp_no, 
 		employees.last_name, 
 		employees.first_name, 
@@ -13,7 +12,7 @@ ON employees.emp_no = salaries.emp_no;
 
 SELECT first_name,last_name 
 FROM employees
-WHERE hire_date BETWEEN '1985-12-31' AND '1987-01-01'; --ask mike to check this
+WHERE hire_date BETWEEN '1986-01-01' AND '1987-01-01'; 
 
 -- 3. List the manager of each department with the following information: department number, department name, the manager's employee number, last name, first name.
 SELECT departments.dept_no AS department_number,
@@ -71,4 +70,10 @@ WHERE departments.dept_name = 'Sales'
 OR departments.dept_name = 'Development';
 
 -- 8. In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
-SELECT * FROM salaries;
+SELECT last_name,
+COUNT(last_name) AS "frequency"
+FROM employees
+GROUP BY last_name
+ORDER BY
+COUNT(last_name) DESC;
+
